@@ -1,4 +1,5 @@
 <?php
+$title = "Home | Hotel Reservation System";
 include_once './components/header.php';
 ?>
 

@@ -1,4 +1,6 @@
 <?php
+$title = "About | Hotel Reservation System";
+$banner = "About Us";
 include_once './components/header.php';
 include_once './components/banner.php';
 ?>

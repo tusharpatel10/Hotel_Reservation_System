@@ -1,6 +1,8 @@
 <?php
+$title = "contact | Hotel Reservation System";
+$banner = "Contact";
 include_once './components/header.php';
-include_once './components/contact.php';
+include_once './components/banner.php';
 ?>
 <!--  contact -->
 <div class="contact">

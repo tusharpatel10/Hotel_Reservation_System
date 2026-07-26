@@ -1,6 +1,8 @@
 <?php
+$title = "Gallery | Hotel Reservation System";
+$banner = "Gallery";
 include_once './components/header.php';
-include_once './components/gallery.php';
+include_once './components/banner.php';
 ?>
 <!-- gallery -->
 <div class="gallery">

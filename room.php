@@ -1,6 +1,8 @@
 <?php
+$title = "Our Room | Hotel Reservation System";
+$banner = "Our Room";
 include_once './components/header.php';
-include_once './components/room.php';
+include_once './components/banner.php';
 ?>
 <!-- our_room -->
 <div class="our_room">
