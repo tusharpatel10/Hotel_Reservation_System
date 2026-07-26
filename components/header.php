@@ -1,3 +1,7 @@
+<?php
+$currentPage = basename($_SERVER['PHP_SELF']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,19 +66,19 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarsExample04">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
+                                    <li class="nav-item <?php echo ($currentPage == "index.php") ? 'active' : ''; ?>">
                                         <a class="nav-link" href="index.php">Home</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item <?php echo ($currentPage == "about.php") ? 'active' : ''; ?>">
                                         <a class="nav-link" href="about.php">About</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item <?php echo ($currentPage == "room.php") ? 'active' : ''; ?>">
                                         <a class="nav-link" href="room.php">Our room</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item <?php echo ($currentPage == "gallery.php") ? 'active' : ''; ?>">
                                         <a class="nav-link" href="gallery.php">Gallery</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item <?php echo ($currentPage == "contact.php") ? 'active' : ''; ?>">
                                         <a class="nav-link" href="contact.php">Contact Us</a>
                                     </li>
                                 </ul>
