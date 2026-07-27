@@ -85,11 +85,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
 
             <div class="auth-footer">Already have an account? <a href="login.php">Sign in</a></div>
+
+            <div>
+                <?php if ($successMessage != '') { ?>
+                    <div style="opacity: 1; transition:opacity 0.5s ease;" class="alert alert-success mt-3" id="alert" role="alert">
+                        <strong><?php echo $successMessage; ?></strong>
+                    </div>
+                <?php } ?>
+
+                <?php if ($validation != '') { ?>
+                    <div class="alert alert-danger mt-3" id="alert" role="alert">
+                        <strong><?php echo $validation; ?></strong>
+                    </div>
+                <?php } ?>
+            </div>
+
         </section>
     </main>
 
     <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
     <script src="admin/assets/js/main.js"></script>
+    <script>
+        const alert = document.getElementById("alert");
+        alert.style.opacity = "1";
+        alert.style.transition = "opacity 0.5s ease";
+
+        // fade out after 2 seconds
+        setTimeout(() => {
+            alert.style.opacity = "0";
+
+            // hide after the fade-out animation finished
+            setTimeout(() => {
+                alert.style.display = "none";
+            }, 500);
+        }, 2500);
+    </script>
 </body>
 
 </html>
