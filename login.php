@@ -32,11 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $row['Password'])) {
                 if ($row['Roles'] == 'Admin') {
                     $_SESSION['user_id'] = $row['user_id'];
+                    $_SESSION['FullName'] = $row['FullName'];
                     $_SESSION['user_email'] = $row['Email'];
                     $_SESSION['user_roles'] = $row['Roles'];
                     header("Location: admin/index.php");
                 } elseif ($row['Roles'] == 'Users') {
                     $_SESSION['user_id'] = $row['user_id'];
+                    $_SESSION['FullName'] = $row['FullName'];
                     $_SESSION['user_email'] = $row['Email'];
                     $_SESSION['user_roles'] = $row['Roles'];
                     header("Location: index.php");
