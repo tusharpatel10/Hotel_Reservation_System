@@ -1,5 +1,9 @@
 <?php
+session_start();
 $currentPage = basename($_SERVER['PHP_SELF']);
+if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Admin') {
+    header("Location: admin/index.php");
+}
 ?>
 
 <!DOCTYPE html>
