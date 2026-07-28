@@ -1,5 +1,8 @@
 <?php
 $currentPage = basename($_SERVER['PHP_SELF']);
+if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Users') {
+    header("Location: ../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
