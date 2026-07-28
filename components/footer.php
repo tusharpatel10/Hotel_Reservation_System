@@ -61,6 +61,18 @@
    <!-- sidebar -->
    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
    <script src="assets/js/custom.js"></script>
+   <script>
+       window.history.forward();
+
+       function noBack() {
+           window.history.forward();
+       }
+       window.onload = noBack;
+       window.onpageshow = function(evt) {
+           if (evt.persisted) noBack();
+       };
+       window.onunload = function() {};
+   </script>
    </body>
 
    </html>
