@@ -1,5 +1,17 @@
 <?php
 session_start();
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+if (isset($_SESSION['user_id']) != null && $_SESSION['user_roles'] == 'Admin') {
+    header("Location: admin/index.php");
+}
+if (isset($_SESSION['user_id']) != null && $_SESSION['user_roles'] == 'Users') {
+    header("Location: index.php");
+}
+
 $validationMsg = '';
 include_once "connection.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
