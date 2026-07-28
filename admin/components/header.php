@@ -95,14 +95,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
                         <div class="dropdown">
                             <button class="profile-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="profile-name d-none d-sm-inline">Admin Hasan</span>
+                                <span class="profile-name d-none d-sm-inline"><?php if (isset($_SESSION['user_email'])) echo $_SESSION['user_email']; ?></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="profile.html">Profile</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="login.html">Sign out</a></li>
+                                <li><a class="dropdown-item" href="../logout.php">Sign out</a></li>
                             </ul>
                         </div>
                     </div>
