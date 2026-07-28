@@ -85,12 +85,22 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Admin') {
                                     <li class="nav-item <?php echo ($currentPage == "contact.php") ? 'active' : ''; ?>">
                                         <a class="nav-link" href="contact.php">Contact Us</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="register.php">Register</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="login.php">Login</a>
-                                    </li>
+                                    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Users') { ?>
+
+                                        <li class="nav-item dropdown ">
+                                            <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['FullName']; ?></a>
+                                            <div class="dropdown-menu">
+                                                <a href="logout.php" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+                                            </div>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="register.php">Register</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="login.php">Login</a>
+                                        </li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </nav>
