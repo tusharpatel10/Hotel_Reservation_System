@@ -1,27 +1,22 @@
 <?php
-session_start();
-if ($_SESSION['user_email'] == '') {
-  header("Location: ../login.php");
-} else {
-
-  $title = "Home Page - Admin Panel";
-  include_once './components/header.php';
+$title = "Home Page - Admin Panel";
+include_once './components/header.php';
 ?>
-  <main class="dashboard-content">
-    <div class="container-fluid px-3 px-lg-4 py-4">
-      <div class="page-heading">
-        <div class="page-heading-copy">
-          <span class="page-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
-          <div>
-            <p class="eyebrow mb-1"></p>
-            <h1 class="h3 mb-1">Dashboard</h1>
-            <p class="text-muted mb-0">Monitor performance, sales, users, and support from one clean workspace.</p>
-          </div>
+<main class="dashboard-content">
+  <div class="container-fluid px-3 px-lg-4 py-4">
+    <div class="page-heading">
+      <div class="page-heading-copy">
+        <span class="page-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
+        <div>
+          <p class="eyebrow mb-1"></p>
+          <h1 class="h3 mb-1">Dashboard</h1>
+          <p class="text-muted mb-0">Monitor performance, sales, users, and support from one clean workspace.</p>
         </div>
-        <div class="heading-actions"><button class="btn btn-outline-secondary btn-sm" type="button"><i class="bi bi-download" aria-hidden="true"></i> Export</button><button class="btn btn-primary btn-sm" type="button"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i> Create Report</button></div>
       </div>
+      <div class="heading-actions"><button class="btn btn-outline-secondary btn-sm" type="button"><i class="bi bi-download" aria-hidden="true"></i> Export</button><button class="btn btn-primary btn-sm" type="button"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i> Create Report</button></div>
+    </div>
 
-      <!-- <section class="row g-3 mt-1" aria-label="Dashboard metrics">
+    <!-- <section class="row g-3 mt-1" aria-label="Dashboard metrics">
       <div class="col-12 col-sm-6 col-xl-3">
         <article class="metric-card metric-primary">
           <div class="metric-top">
@@ -79,7 +74,7 @@ if ($_SESSION['user_email'] == '') {
       </div>
     </section> -->
 
-      <!-- <section class="row g-3 mt-1">
+    <!-- <section class="row g-3 mt-1">
       <div class="col-12 col-xl-8">
         <div class="panel">
           <div class="panel-header">
@@ -134,7 +129,7 @@ if ($_SESSION['user_email'] == '') {
       </div>
     </section> -->
 
-      <!-- <section class="panel mt-3">
+    <!-- <section class="panel mt-3">
       <div class="panel-header">
         <div>
           <h2 class="h5 mb-1 section-title"><i class="bi bi-people" aria-hidden="true"></i><span>Recent Users</span></h2>
@@ -239,9 +234,8 @@ if ($_SESSION['user_email'] == '') {
         </table>
       </div>
     </section> -->
-    </div>
-  </main>
+  </div>
+</main>
 <?php
-  include_once './components/footer.php';
-}
+include_once './components/footer.php';
 ?>
