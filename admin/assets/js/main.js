@@ -146,7 +146,7 @@
     initThemeToggle();
 
     // Initialize user profile values in UI. Provide a window.adminHMDUser object to override defaults.
-    /* function initUserProfile() {
+    function initUserProfile() {
       var user = window.adminHMDUser || { name: "Admin Hasan", workspace: "Active Workspace", avatar: "../assets/images/avatar/avatar.jpg" };
 
       var sidebarNameEl = document.querySelector(".sidebar-user strong");
@@ -161,7 +161,7 @@
 
       Array.prototype.forEach.call(profileNameEls, function (el) { el.textContent = user.name; });
       Array.prototype.forEach.call(profileAvatarEls, function (img) { if (user.avatar) img.src = user.avatar; if (user.name) img.alt = user.name; });
-    } */
+    }
 
     initUserProfile();
 
