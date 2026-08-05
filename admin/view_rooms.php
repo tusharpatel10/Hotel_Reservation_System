@@ -1,7 +1,28 @@
 <?php
-$title = "Add Hotel Page - Admin Panel";
+ob_start();
+$title = "View Hotel Page - Admin Panel";
 include_once './components/header.php';
 include_once '../connection.php';
+
+// Clear the URL after redirect start
+if (isset($_GET['updateSuccessMsg'])) {
+    $_SESSION['flash'] = [
+        'type' => 'success',
+        'message' => $_GET['updateSuccessMsg']
+    ];
+    header("Location: view_rooms.php");
+    exit;
+}
+if (isset($_GET['updateErrorMsg'])) {
+    $_SESSION['flash'] = [
+        'type' => 'danger',
+        'message' => $_GET['updateErrorMsg']
+    ];
+    header("Location: view_rooms.php");
+    exit;
+}
+// Clear the URL after redirect end
+
 ?>
 <main class="dashboard-content">
     <div class="container-fluid px-3 px-lg-4 py-4">
@@ -15,8 +36,8 @@ include_once '../connection.php';
                     <p class="text-muted mb-0 small">Fill in the details below to add a new hotel.</p>
                 </div>
             </div>
-            <a href="hotels.php" class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-arrow-left me-1"></i> Back to Hotels
+            <a onclick="history.back()" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-arrow-left me-1"></i> Back
             </a>
         </div>
 
@@ -31,6 +52,17 @@ include_once '../connection.php';
                 <strong><?php echo $_GET['hotelmsgerror']; ?></strong>
             </div>
         <?php } ?>
+        <?php if (isset($_SESSION['flash'])) {
+            $type = $_SESSION['flash']['type'];
+            $message = $_SESSION['flash']['message'];
+            $icon = $type === 'success' ? 'check-circle-fill' : 'exclamation-trinagle-fill';
+        ?>
+            <div class="alert alert-<?= $type ?> alert-dismissible fade show mt-3" id="alert" role="alert">
+                <span><?= $message  ?></span>
+            </div>
+        <?php
+            unset($_SESSION['flash']);
+        } ?>
         <script>
             const alert = document.getElementById("alert");
             alert.style.opacity = "1";
@@ -44,7 +76,7 @@ include_once '../connection.php';
                 setTimeout(() => {
                     alert.style.display = "none";
                 }, 500);
-            }, 2500);
+            }, 4500);
         </script>
         <!-- Show Alert Message End -->
 
@@ -97,4 +129,5 @@ include_once '../connection.php';
 
 <?php
 include_once './components/footer.php';
+ob_end_flush();
 ?>
