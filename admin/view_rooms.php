@@ -1,5 +1,5 @@
 <?php
-$title = "Add Hotel Page - Admin Panel";
+$title = "View Hotel Page - Admin Panel";
 include_once './components/header.php';
 include_once '../connection.php';
 ?>
@@ -29,6 +29,16 @@ include_once '../connection.php';
         <?php if (!empty($_GET['hotelmsgerror'])) { ?>
             <div class="alert alert-danger mt-3" id="alert" role="alert">
                 <strong><?php echo $_GET['hotelmsgerror']; ?></strong>
+            </div>
+        <?php } ?>
+        <?php if (!empty($_GET['updateSuccessMsg'])) { ?>
+            <div style="opacity: 1; transition:opacity 0.5s ease;" class="alert alert-success mt-3" id="alert" role="alert">
+                <strong><?php echo $_GET['updateSuccessMsg']; ?></strong>
+            </div>
+        <?php   } ?>
+        <?php if (!empty($_GET['updateErrorMsg'])) { ?>
+            <div class="alert alert-danger mt-3" id="alert" role="alert">
+                <strong><?php echo $_GET['updateErrorMsg']; ?></strong>
             </div>
         <?php } ?>
         <script>
