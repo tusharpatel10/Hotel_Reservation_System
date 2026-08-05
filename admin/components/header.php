@@ -46,9 +46,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Users') {
                     <span class="nav-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
                     <span class="nav-text">Add Hotels</span>
                 </a>
-                <a class="nav-link <?php echo $currentPage == "View_Hotel.php" ? 'active' : ''; ?> " href="View_Hotel.php">
+                <a class="nav-link <?php echo $currentPage == "view_rooms.php" ? 'active' : ''; ?> " href="view_rooms.php">
                     <span class="nav-icon"><i class="bi bi-list" aria-hidden="true"></i></span>
-                    <span class="nav-text">View Hotels</span>
+                    <span class="nav-text">View Rooms</span>
                 </a>
                 <a class="nav-link <?php echo $currentPage == "add_rooms.php" ? 'active' : ''; ?> " href="add-user.html">
                     <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
