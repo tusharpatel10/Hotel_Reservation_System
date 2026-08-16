@@ -1,8 +1,55 @@
 <?php
+ob_start();
 $title = "Home | Hotel Reservation System";
 include_once './components/header.php';
-?>
+include_once 'connection.php';
 
+// Clear the URL after redirect start
+if (isset($_GET['bookingSuccess'])) {
+   $_SESSION['flash'] = [
+      'type' => 'success',
+      'message' => $_GET['bookingSuccess']
+   ];
+   header('Location: index.php');
+   exit;
+}
+if (isset($_GET['bookingError'])) {
+   $_SESSION['flash'] = [
+      'type' => 'error',
+      'message' => $_GET['bookingError']
+   ];
+   header('Location: index.php');
+   exit;
+}
+// Clear the URL after redirect end
+
+?>
+<?php if (isset($_SESSION['flash'])) {
+   $type = $_SESSION['flash']['type'];
+   $message = $_SESSION['flash']['message'];
+   $icon = $type === 'success' ? 'check-circle-fill' : 'exclamation-trinagle-fill';
+?>
+   <div class="alert alert-<?= $type ?> alert-dismissible fade show mt-3" id="alert" role="alert">
+      <span><?= $message  ?></span>
+   </div>
+<?php
+   unset($_SESSION['flash']);
+} ?>
+<script>
+   const alert = document.getElementById("alert");
+   alert.style.opacity = "1";
+   alert.style.transition = "opacity 0.5s ease";
+
+   // fade out after 2 seconds
+   setTimeout(() => {
+      alert.style.opacity = "0";
+
+      // hide after the fade-out animation finished
+      setTimeout(() => {
+         alert.style.display = "none";
+      }, 500);
+   }, 4500);
+</script>
 <!-- banner -->
 <section class="banner_main">
    <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
@@ -92,24 +139,100 @@ include_once './components/header.php';
       <div class="row">
          <div class="col-md-12">
             <div class="titlepage">
-               <h2>Our Room</h2>
-               <p>Lorem Ipsum available, but the majority have suffered </p>
+               <h2>Book Now</h2>
+               <p>Comfortable and elegant rooms designed to make your stay relaxing and memorable. Enjoy modern amenities, a peaceful atmosphere, and everything you need for a comfortable stay.</p>
             </div>
          </div>
       </div>
       <div class="row">
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img src="assets/images/room1.jpg" alt="#" /></figure>
+         <?php
+         // write Query start
+         $showHotelData = "SELECT hotel.HotelName,hotel.HotelDescription,hotel.HotelImage,rooms.Room_id,rooms.Room_No,rooms.Floor_No,Rooms.NoOfPersons FROM hotel INNER JOIN rooms on hotel.hotel_id=rooms.hotel_id";
+         $result = mysqli_query($conn, $showHotelData);
+         if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+         ?>
+               <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+
+                     <!-- Room Image -->
+                     <div class="position-relative">
+                        <img
+                           src="admin/images/hotel_rooms/<?php echo htmlspecialchars($row['HotelImage']); ?>"
+                           class="card-img-top"
+                           alt="<?php echo htmlspecialchars($row['HotelName']); ?>"
+                           style="height: 230px; object-fit: cover;">
+                     </div>
+
+                     <!-- Room Details -->
+                     <div class="card-body p-4">
+
+                        <h4 class="card-title fw-bold mb-2">
+                           <?php echo htmlspecialchars($row['HotelName']); ?>
+                        </h4>
+
+                        <p class="text-muted small mb-4">
+                           <?php echo htmlspecialchars($row['HotelDescription']); ?>
+                        </p>
+
+                        <!-- Room Information -->
+                        <div class="row g-3">
+
+                           <div class="col-6">
+                              <div class="bg-light rounded-3 p-3 text-center">
+                                 <i class="bi bi-door-open text-primary fs-4"></i>
+                                 <div class="small text-muted mt-1">Room No.</div>
+                                 <strong>
+                                    <?php echo htmlspecialchars($row['Room_No']); ?>
+                                 </strong>
+                              </div>
+                           </div>
+
+                           <div class="col-6">
+                              <div class="bg-light rounded-3 p-3 text-center">
+                                 <i class="bi bi-layers text-primary fs-4"></i>
+                                 <div class="small text-muted mt-1">Floor</div>
+                                 <strong>
+                                    <?php echo htmlspecialchars($row['Floor_No']); ?>
+                                 </strong>
+                              </div>
+                           </div>
+
+                           <div class="col-12">
+                              <div class="bg-light rounded-3 p-3 d-flex align-items-center">
+                                 <i class="bi bi-people text-primary fs-4 me-3"></i>
+
+                                 <div>
+                                    <div class="small text-muted">Guests</div>
+                                    <strong>
+                                       <?php echo htmlspecialchars($row['NoOfPersons']); ?>
+                                       Persons
+                                    </strong>
+                                 </div>
+                              </div>
+                              <a href="BookNow.php?bookingid=<?php echo $row['Room_id'] ?>"
+                                 class="btn btn-primary w-60 rounded-3 py-1">
+                                 Book Now
+                              </a>
+                           </div>
+
+                        </div>
+
+                     </div>
+                  </div>
                </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
+            <?php }
+         } else { ?>
+            <div class="col-md-4 col-sm-6">
+               <div id="serv_hover" class="room">
+                  <div class="bed_room">
+                     <h3>No Data Available</h3>
+                     <p></p>
+                  </div>
                </div>
             </div>
-         </div>
-         <div class="col-md-4 col-sm-6">
+         <?php   } ?>
+         <!-- <div class="col-md-4 col-sm-6">
             <div id="serv_hover" class="room">
                <div class="room_img">
                   <figure><img src="assets/images/room2.jpg" alt="#" /></figure>
@@ -163,7 +286,7 @@ include_once './components/header.php';
                   <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
                </div>
             </div>
-         </div>
+         </div> -->
       </div>
    </div>
 </div>
@@ -327,4 +450,5 @@ include_once './components/header.php';
 
 <?php
 include_once './components/footer.php';
+ob_end_flush();
 ?>
