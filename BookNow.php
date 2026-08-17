@@ -3,6 +3,12 @@ ob_start();
 $title = "Book Now | Hotel Reservation System";
 include_once './components/header.php';
 include_once 'connection.php';
+
+if (empty($_SESSION['user_id']) && $_SESSION['user_roles'] != 'Users') {
+    header("Location: Login.php");
+    exit;
+}
+
 $room_id = $_GET['bookingid'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -12,8 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_out = mysqli_real_escape_string($conn, $_POST['check_out']);
     $special_request = mysqli_real_escape_string($conn, $_POST['special_request']);
     $room_id = $_GET['bookingid'];
+    $user_id = $_SESSION['user_id'];
 
-    $query = "INSERT INTO booking(PhoneNumber, Age, checkIn, checkOut, specialRequest,RoomID_fk) VALUES ('$mobile_number', $age, '$check_in', '$check_out', '$special_request', $room_id)";
+    $query = "INSERT INTO booking(PhoneNumber, Age, checkIn, checkOut, specialRequest,RoomID_fk,UserID_fk)
+    VALUES ('$mobile_number', $age, '$check_in', '$check_out', '$special_request', $room_id,$user_id)";
     $result = mysqli_query($conn, $query);
     if ($result) {
         $successMsg = "Booking submitted Successfully!";

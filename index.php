@@ -29,7 +29,7 @@ if (isset($_GET['bookingError'])) {
    $message = $_SESSION['flash']['message'];
    $icon = $type === 'success' ? 'check-circle-fill' : 'exclamation-trinagle-fill';
 ?>
-   <div class="alert alert-<?= $type ?> alert-dismissible fade show mt-3" id="alert" role="alert">
+   <div class="alert alert-<?= $type ?> alert-dismissible text-center fade show mt-3" id="alert" role="alert">
       <span><?= $message  ?></span>
    </div>
 <?php
@@ -210,14 +210,21 @@ if (isset($_GET['bookingError'])) {
                                     </strong>
                                  </div>
                               </div>
-                              <a href="BookNow.php?bookingid=<?php echo $row['Room_id'] ?>"
-                                 class="btn btn-primary w-60 rounded-3 py-1">
-                                 Book Now
-                              </a>
+
+                              <?php
+                              if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_roles']) && $_SESSION['user_roles'] == 'Users') { ?>
+                                 <a href="BookNow.php?bookingid=<?php echo $row['Room_id'] ?>"
+                                    class="btn btn-primary w-60 rounded-3 py-1">
+                                    Book Now
+                                 </a>
+                              <?php } else { ?>
+                                 <a href="Login.php"
+                                    class="btn btn-primary w-60 rounded-3 py-1">
+                                    Book Now
+                                 </a>
+                              <?php } ?>
                            </div>
-
                         </div>
-
                      </div>
                   </div>
                </div>
