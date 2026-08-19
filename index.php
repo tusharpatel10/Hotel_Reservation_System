@@ -147,7 +147,9 @@ if (isset($_GET['bookingError'])) {
       <div class="row">
          <?php
          // write Query start
-         $showHotelData = "SELECT hotel.HotelName,hotel.HotelDescription,hotel.HotelImage,rooms.Room_id,rooms.Room_No,rooms.Floor_No,Rooms.NoOfPersons FROM hotel INNER JOIN rooms on hotel.hotel_id=rooms.hotel_id";
+         $showHotelData = "SELECT booking.bookingID,hotel.HotelName, hotel.HotelDescription, hotel.HotelImage, rooms.Room_id, rooms.Room_No, rooms.Floor_No,rooms.NoOfPersons FROM hotel
+         INNER JOIN rooms on hotel.hotel_id=rooms.hotel_id
+         LEFT JOIN booking on booking.RoomID_fk=rooms.Room_id AND booking.status='confirmed'";
          $result = mysqli_query($conn, $showHotelData);
          if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -212,17 +214,21 @@ if (isset($_GET['bookingError'])) {
                               </div>
 
                               <?php
-                              if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_roles']) && $_SESSION['user_roles'] == 'Users') { ?>
-                                 <a href="BookNow.php?bookingid=<?php echo $row['Room_id'] ?>"
-                                    class="btn btn-primary w-60 rounded-3 py-1">
-                                    Book Now
-                                 </a>
-                              <?php } else { ?>
-                                 <a href="Login.php"
-                                    class="btn btn-primary w-60 rounded-3 py-1">
-                                    Book Now
-                                 </a>
-                              <?php } ?>
+                              if (!empty($row['bookingID'])) { ?>
+                                 <div class="badge badge-success p-2">Already Booked</div>
+                                 <?php } else {
+                                 if (isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_roles']) && $_SESSION['user_roles'] == 'Users') { ?>
+                                    <a href="BookNow.php?bookingid=<?php echo $row['Room_id'] ?>"
+                                       class="btn btn-primary w-60 rounded-3 py-1">
+                                       Book Now
+                                    </a>
+                                 <?php } else { ?>
+                                    <a href="Login.php"
+                                       class="btn btn-primary w-60 rounded-3 py-1">
+                                       Book Now
+                                    </a>
+                              <?php }
+                              } ?>
                            </div>
                         </div>
                      </div>
@@ -239,61 +245,6 @@ if (isset($_GET['bookingError'])) {
                </div>
             </div>
          <?php   } ?>
-         <!-- <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img src="assets/images/room2.jpg" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img src="assets/images/room3.jpg" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img src="assets/images/room4.jpg" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img src="assets/images/room5.jpg" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img src="assets/images/room6.jpg" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div> -->
       </div>
    </div>
 </div>
