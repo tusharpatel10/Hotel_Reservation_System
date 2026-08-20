@@ -54,6 +54,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Users') {
                     <span class="nav-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span>
                     <span class="nav-text">Add Rooms</span>
                 </a>
+                <a class="nav-link <?php echo $currentPage == "Bookings.php" ? 'active' : ''; ?> " href="Bookings.php">
+                    <span class="nav-icon"><i class="bi bi-list" aria-hidden="true"></i></span>
+                    <span class="nav-text">Booking</span>
+                </a>
                 <a class="nav-link" href="profile.html">
                     <span class="nav-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
                     <span class="nav-text">Profile</span>
