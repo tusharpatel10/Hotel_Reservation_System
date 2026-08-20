@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $currentPage = basename($_SERVER['PHP_SELF']);
 if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Admin') {
     header("Location: admin/index.php");
@@ -90,6 +92,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Admin') {
                                         <li class="nav-item dropdown ">
                                             <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['FullName']; ?></a>
                                             <div class="dropdown-menu">
+                                                <a href="Users_Booking.php" class="dropdown-item"><i class="fa fa-book"></i> My Bookings</a>
+                                                <div class="dropdown-divider"></div>
                                                 <a href="logout.php" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
                                             </div>
                                         </li>
