@@ -50,7 +50,15 @@ $userId = $_SESSION['user_id'];
                                     <td><?php echo $row['Room_No']; ?></td>
                                     <td><?php echo $row['checkIn']; ?></td>
                                     <td><?php echo $row['checkOut']; ?></td>
-                                    <td><?php echo $row['status']; ?></td>
+                                    <?php if ($row['status'] == "pending") { ?>
+                                        <td><span class="badge badge-warning">Pending</span></td>
+                                    <?php } elseif ($row['status'] == 'completed') { ?>
+                                        <td><span class="badge badge-success">Completed</span></td>
+                                    <?php } elseif ($row['status'] == 'confirmed') { ?>
+                                        <td><span class="badge badge-primary">Canfirmed</span></td>
+                                    <?php } else { ?>
+                                        <td><span class="badge badge-danger">Cancelled</span></td>
+                                    <?php } ?>
 
                                 </tr>
                             <?php }
