@@ -61,17 +61,30 @@
    <!-- sidebar -->
    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
    <script src="assets/js/custom.js"></script>
-   <script>
-       window.history.forward();
+   <!-- Data table -->
+   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+   <script src="https://cdn.datatables.net/3.0.2/js/dataTables.min.js"></script>
 
-       function noBack() {
-           window.history.forward();
-       }
-       window.onload = noBack;
-       window.onpageshow = function(evt) {
-           if (evt.persisted) noBack();
-       };
-       window.onunload = function() {};
+   <script>
+       new DataTable('#bookingTable', {
+           layout: {
+               bottomEnd: {
+                   paging: {
+                       firstLast: false
+                   }
+               }
+           }
+       });
+       //    window.history.forward();
+
+       //    function noBack() {
+       //        window.history.forward();
+       //    }
+       //    window.onload = noBack;
+       //    window.onpageshow = function(evt) {
+       //        if (evt.persisted) noBack();
+       //    };
+       //    window.onunload = function() {};
    </script>
    </body>
 

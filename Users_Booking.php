@@ -18,8 +18,8 @@ $userId = $_SESSION['user_id'];
     <div class="container-fluid">
         <div class="row">
             <!-- View hotel Start -->
-            <div class="table-responsive table-dark table-hover align-middle">
-                <table class="table">
+            <div class="table-responsive table-dark table-hover align-middle mx-3">
+                <table class="table" id="bookingTable">
                     <thead>
                         <tr class="text-center">
                             <th>Sr. No</th>

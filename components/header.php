@@ -40,6 +40,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_roles'] == 'Admin') {
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <!-- Data Table -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/3.0.2/css/dataTables.dataTables.min.css">
 </head>
 <!-- body -->
 
